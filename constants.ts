@@ -1,0 +1,117 @@
+import { Incident, IncidentStatus, Severity, SentVia, Responder } from './types';
+
+// Bounding box for simulation: Lat 20.34–20.37, Lng 85.80–85.83
+export const BOUNDS = {
+  minLat: 20.34,
+  maxLat: 20.37,
+  minLng: 85.80,
+  maxLng: 85.83,
+};
+
+export const INITIAL_RESPONDERS: Responder[] = [
+  {
+    responder_id: 'RESP-01',
+    name: 'Dr. Kumar',
+    status: 'Available',
+    last_lat: 20.360800,
+    last_lng: 85.820900,
+    battery_pct: 92,
+    vehicle_id: 'AMB-02',
+  },
+  {
+    responder_id: 'RESP-02',
+    name: 'Team B',
+    status: 'En route',
+    last_lat: 20.349500,
+    last_lng: 85.809800,
+    battery_pct: 67,
+    vehicle_id: 'AMB-03',
+  },
+  {
+    responder_id: 'RESP-05',
+    name: 'Medic Unit 5',
+    status: 'Available',
+    last_lat: 20.347000,
+    last_lng: 85.811000,
+    battery_pct: 80,
+    vehicle_id: 'AMB-01',
+  },
+  {
+    responder_id: 'RESP-06',
+    name: 'Rapid Response 1',
+    status: 'Available',
+    last_lat: 20.355000,
+    last_lng: 85.815000,
+    battery_pct: 100,
+    vehicle_id: 'MOTO-01',
+  }
+];
+
+export const INITIAL_INCIDENTS: Incident[] = [
+  {
+    incident_id: 'INC-0001',
+    timestamp_utc: new Date(Date.now() - 1000 * 60 * 15).toISOString(), // 15 mins ago
+    status: IncidentStatus.New,
+    severity: Severity.High,
+    gps_lat: 20.350700,
+    gps_lng: 85.806300,
+    address: "NH16, Near Milepost 120",
+    speed_kmh: 98,
+    accel_peak_g: 72.5,
+    gyro_peak_dps: 215,
+    sensor_source: "DEV-001",
+    report_type: "auto",
+    victim_name: "John Doe",
+    victim_age: 34,
+    assigned_responder: null,
+    responder_eta_min: null,
+    ambulance_id: null,
+    sent_via: SentVia.Satellite,
+    notes: "Possible multi-vehicle collision; airbags deployed",
+    is_new_alert: false,
+  },
+  {
+    incident_id: 'INC-0002',
+    timestamp_utc: new Date(Date.now() - 1000 * 60 * 45).toISOString(), // 45 mins ago
+    status: IncidentStatus.Acknowledged,
+    severity: Severity.Medium,
+    gps_lat: 20.350120,
+    gps_lng: 85.801230,
+    address: "State Highway 5, Km 72",
+    speed_kmh: 56,
+    accel_peak_g: 12.3,
+    gyro_peak_dps: 48,
+    sensor_source: "DEV-002",
+    report_type: "auto",
+    victim_name: null,
+    victim_age: null,
+    assigned_responder: 'RESP-02',
+    responder_eta_min: 8,
+    ambulance_id: 'AMB-03',
+    sent_via: SentVia.GSM,
+    notes: "Single vehicle rollover; no passenger data",
+    is_new_alert: false,
+  },
+  {
+    incident_id: 'INC-0003',
+    timestamp_utc: new Date(Date.now() - 1000 * 60 * 120).toISOString(), // 2 hours ago
+    status: IncidentStatus.Dispatched,
+    severity: Severity.Low,
+    gps_lat: 20.349000,
+    gps_lng: 85.810000,
+    address: "Rural road near Village X",
+    speed_kmh: 30,
+    accel_peak_g: 3.1,
+    gyro_peak_dps: 6,
+    sensor_source: "DEV-003",
+    report_type: "manual",
+    victim_name: "Anita S",
+    victim_age: 29,
+    assigned_responder: 'RESP-05',
+    responder_eta_min: 20,
+    ambulance_id: 'AMB-01',
+    sent_via: SentVia.LoRa,
+    notes: "Driver reported minor collision",
+    is_new_alert: false,
+  },
+];

@@ -1,0 +1,5 @@
+{
+  "name": "RoadRescue Dashboard",
+  "description": "Real-time emergency response dashboard for hospital dispatch centers, featuring live incident tracking, resource management, and automated analytics.",
+  "requestFramePermissions": []
+}
